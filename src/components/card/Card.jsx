@@ -8,7 +8,7 @@ export default function Card({ data, deletePeople }) {
         return (
           <div className="container m-2" key={index}>
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-5">
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
