@@ -2,6 +2,22 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Form({ dataPeople }) {
+  const [nameVal, setNameVal] = useState("");
+  const [heightVal, setHeightVal] = useState("");
+  const [massVal, setMassVal] = useState("");
+
+  const handleNameInput = (e) => {
+    setNameVal(e.target.value);
+  };
+
+  const handleHeightInput = (e) => {
+    setHeightVal(e.target.value);
+  };
+
+  const handleMassInput = (e) => {
+    setMassVal(e.target.value);
+  };
+
   const {
     register,
     handleSubmit,
@@ -9,8 +25,10 @@ export default function Form({ dataPeople }) {
   } = useForm();
   const onSubmit = (data) => {
     dataPeople(data);
+    setNameVal("");
+    setHeightVal("");
+    setMassVal("");
   };
-
   return (
     <div className="container col-6">
       <button
@@ -46,18 +64,26 @@ export default function Form({ dataPeople }) {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-floating mb-3">
                   <input
-                    {...register("name", { required: true })}
+                    {...register("name", {
+                      required: true,
+                    })}
                     className="form-control"
                     placeholder="Alan Perez"
+                    value={nameVal}
+                    onChange={handleNameInput}
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    {...register("height", { required: true })}
+                    {...register("height", {
+                      required: true,
+                    })}
                     className="form-control"
                     placeholder="178"
                     type="number"
+                    value={heightVal}
+                    onChange={handleHeightInput}
                   />
                   <label htmlFor="floatingInput">Height</label>
                 </div>
@@ -67,9 +93,15 @@ export default function Form({ dataPeople }) {
                     className="form-control"
                     placeholder="ej. 77"
                     type="number"
+                    onChange={handleMassInput}
+                    value={massVal}
                   />
                   <label htmlFor="floatingInput">Mass</label>
-                  <input type="submit" className="btn btn-primary mt-2" />
+                  <input
+                    type="submit"
+                    value="Send"
+                    className="btn btn-primary mt-2"
+                  />
                 </div>
                 {errors.name && (
                   <span className="form-control form-control-sm m-1 alert-danger">

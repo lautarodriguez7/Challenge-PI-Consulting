@@ -6,7 +6,23 @@ export default function Card({ data, deletePeople }) {
       {data.map((item, index) => {
         return (
           <div className="container m-2" key={index}>
-            <div className="row">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Name: {item.name}</h5>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">Height: {item.height}</li>
+                <li className="list-group-item">Mass: {item.mass}</li>
+              </ul>
+              <a
+                href="#"
+                className="btn btn-danger"
+                onClick={() => deletePeople(index)}
+              >
+                Delete
+              </a>
+            </div>
+            {/* <div className="row">
               <div className="col-sm-5">
                 <div className="card">
                   <div className="card-body">
@@ -30,7 +46,7 @@ export default function Card({ data, deletePeople }) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         );
       })}
