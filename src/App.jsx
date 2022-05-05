@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import Card from "./components/card/Card";
+import CardList from "./components/card/CardList";
 import Form from "./components/form/Form";
 import SearchForm from "./components/form/SearchForm";
 import { fetchPeople, removePeople, addNewPeople } from "./redux/slices/people";
+
 function App() {
   const dispatch = useDispatch();
   const people = useSelector((state) => state.people.listPeople);
@@ -17,10 +18,9 @@ function App() {
   }, []);
   return (
     <div className="container">
-      {/* <CardList /> */}
-      <SearchForm />
+      <SearchForm dispatch={dispatch} people={people} />
       <Form dataPeople={addPeople} />
-      <Card data={people} deletePeople={deletePeople} />
+      <CardList data={people} deletePeople={deletePeople} />
     </div>
   );
 }

@@ -1,12 +1,20 @@
 import React, { Suspense, lazy } from "react";
 
-export default function CardList() {
+export default function CardList({ data, deletePeople }) {
   const Card = lazy(() => import("./Card"));
 
   return (
     <div>
-      <Suspense fallback={<h1 className="alert alert-danger">Loading...</h1>}>
-        <Card data={dataPeople} deletePeople={deletePeople} />
+      <Suspense
+        fallback={
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        }
+      >
+        <Card data={data} deletePeople={deletePeople} />
       </Suspense>
     </div>
   );

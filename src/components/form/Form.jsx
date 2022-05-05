@@ -30,7 +30,7 @@ export default function Form({ dataPeople }) {
     setMassVal("");
   };
   return (
-    <div className="container col-6">
+    <div className="container m-3">
       <button
         type="button"
         className="btn btn-success"
