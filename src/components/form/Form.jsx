@@ -5,7 +5,6 @@ export default function Form({ dataPeople }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -16,11 +15,11 @@ export default function Form({ dataPeople }) {
     <div className="container col-6">
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-success"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        New
+        + New
       </button>
 
       <div
@@ -34,7 +33,7 @@ export default function Form({ dataPeople }) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Modal title
+                New People
               </h5>
               <button
                 type="button"
@@ -49,7 +48,7 @@ export default function Form({ dataPeople }) {
                   <input
                     {...register("name", { required: true })}
                     className="form-control"
-                    placeholder="name@example.com"
+                    placeholder="Alan Perez"
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
@@ -57,7 +56,8 @@ export default function Form({ dataPeople }) {
                   <input
                     {...register("height", { required: true })}
                     className="form-control"
-                    placeholder="name@example.com"
+                    placeholder="178"
+                    type="number"
                   />
                   <label htmlFor="floatingInput">Height</label>
                 </div>
@@ -65,25 +65,28 @@ export default function Form({ dataPeople }) {
                   <input
                     {...register("mass", { required: true })}
                     className="form-control"
-                    placeholder="name@example.com"
+                    placeholder="ej. 77"
+                    type="number"
                   />
                   <label htmlFor="floatingInput">Mass</label>
                   <input type="submit" className="btn btn-primary mt-2" />
                 </div>
-                {errors.name && <span> This name is required </span>}
+                {errors.name && (
+                  <span className="form-control form-control-sm m-1 alert-danger">
+                    This name is required
+                  </span>
+                )}
+                {errors.height && (
+                  <span className="form-control form-control-sm m-1 alert-danger">
+                    This height is required
+                  </span>
+                )}
+                {errors.mass && (
+                  <span className="form-control form-control-sm m-1 alert-danger">
+                    This mass is required
+                  </span>
+                )}
               </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
             </div>
           </div>
         </div>

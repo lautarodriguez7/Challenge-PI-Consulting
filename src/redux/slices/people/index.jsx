@@ -21,18 +21,7 @@ export const peopleSlice = createSlice({
       state.listPeople = state.listPeople.filter((people) =>
         people.name.toLowerCase().includes(action.payload)
       );
-      // console.log(listPeople);
     },
-    // filteredUsers: (state, action) => {
-    //   console.log(state.listPeople);
-    //   let searchData = state.listPeople.find((item, index) => {
-    //     if (item.name == action.payload) {
-    //       return true;
-    //     }
-    //   });
-    //   // state.listPeople = [searchData];
-    //   console.log(searchData);
-    // },
   },
 });
 
@@ -61,5 +50,4 @@ export const addNewPeople = (data) => (dispatch) => {
 
 export const searchPeopleName = (search) => (dispatch) => {
   dispatch(searchPeople(search));
-  // console.log(search.target.value);
 };

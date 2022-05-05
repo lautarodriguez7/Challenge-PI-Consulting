@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { filteredPeople } from "../../redux/slices/people";
+import { filteredPeople, fetchPeople } from "../../redux/slices/people";
 
 export default function SearchForm() {
   const dispatch = useDispatch();
@@ -8,12 +8,17 @@ export default function SearchForm() {
   const filterUsers = () => {
     dispatch(filteredPeople(inputRef.current.value));
   };
+  console.log(inputRef.current.value);
+  const handleChange = (e) =>
+    inputRef.current.value === "" ? dispatch(fetchPeople()) : null;
+
   return (
     <div className="container d-flex bd-highlight">
       <input
         type="text"
         placeholder="Search"
         ref={inputRef}
+        onChange={handleChange}
         className="  form-control m-2"
       />
       <button

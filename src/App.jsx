@@ -4,12 +4,7 @@ import "./App.css";
 import Card from "./components/card/Card";
 import Form from "./components/form/Form";
 import SearchForm from "./components/form/SearchForm";
-import {
-  fetchPeople,
-  removePeople,
-  addNewPeople,
-  // searchPeopleName,
-} from "./redux/slices/people";
+import { fetchPeople, removePeople, addNewPeople } from "./redux/slices/people";
 function App() {
   const dispatch = useDispatch();
   const people = useSelector((state) => state.people.listPeople);
@@ -17,7 +12,6 @@ function App() {
   const deletePeople = (index) => {
     dispatch(removePeople(index));
   };
-  // const searchPeople = (data) => dispatch(searchPeopleName(data));
   useEffect(() => {
     dispatch(fetchPeople());
   }, []);
