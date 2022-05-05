@@ -17,23 +17,34 @@ export const peopleSlice = createSlice({
     addPeople: (state, action) => {
       state.listPeople.unshift(action.payload);
     },
-    searchPeople: (state, action) => {
-      console.log(state.listPeople);
-      let searchData = state.listPeople.find((item, index) => {
-        if (item.name == action.payload) {
-          return true;
-        }
-      });
-      // state.listPeople = [searchData];
-      console.log(searchData);
+    filteredPeople: (state, action) => {
+      state.listPeople = state.listPeople.filter((people) =>
+        people.name.toLowerCase().includes(action.payload)
+      );
+      // console.log(listPeople);
     },
+    // filteredUsers: (state, action) => {
+    //   console.log(state.listPeople);
+    //   let searchData = state.listPeople.find((item, index) => {
+    //     if (item.name == action.payload) {
+    //       return true;
+    //     }
+    //   });
+    //   // state.listPeople = [searchData];
+    //   console.log(searchData);
+    // },
   },
 });
 
 export default peopleSlice.reducer;
 
-export const { setListPeople, deletePeople, addPeople, searchPeople } =
-  peopleSlice.actions;
+export const {
+  setListPeople,
+  deletePeople,
+  addPeople,
+  searchPeople,
+  filteredPeople,
+} = peopleSlice.actions;
 
 export const fetchPeople = () => async (dispatch) => {
   const response = await axios.get("https://swapi.dev/api/people/?page=1");

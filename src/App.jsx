@@ -8,7 +8,7 @@ import {
   fetchPeople,
   removePeople,
   addNewPeople,
-  searchPeopleName,
+  // searchPeopleName,
 } from "./redux/slices/people";
 function App() {
   const dispatch = useDispatch();
@@ -17,14 +17,14 @@ function App() {
   const deletePeople = (index) => {
     dispatch(removePeople(index));
   };
-  const searchPeople = (data) => dispatch(searchPeopleName(data));
+  // const searchPeople = (data) => dispatch(searchPeopleName(data));
   useEffect(() => {
     dispatch(fetchPeople());
   }, []);
   return (
     <div className="container">
       {/* <CardList /> */}
-      <SearchForm search={searchPeople} />
+      <SearchForm />
       <Form dataPeople={addPeople} />
       <Card data={people} deletePeople={deletePeople} />
     </div>
