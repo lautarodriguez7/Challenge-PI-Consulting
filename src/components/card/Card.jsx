@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Card({ data, deletePeople }) {
-  console.log(data);
   return (
     <div>
       {data.map((item, index) => {
