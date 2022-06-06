@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { filteredPeople, fetchPeople } from "../../redux/slices/people";
 
-export default function SearchForm({ dispatch, people }) {
+export default function SearchForm({ people }) {
   const inputRef = useRef("");
+  const dispatch = useDispatch();
   const filterUsers = () => {
-    dispatch(filteredPeople(inputRef.current.value));
+    dispatch(filteredPeople(inputRef.current.value.toLowerCase()));
   };
 
   const handleChange = (e) =>

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addNewPeople } from "../../redux/slices/people";
 
-export default function Form({ dataPeople }) {
+export default function Form() {
+  const dispatch = useDispatch();
+  const addPeople = (data) => dispatch(addNewPeople(data));
+
   const [nameVal, setNameVal] = useState("");
   const [heightVal, setHeightVal] = useState("");
   const [massVal, setMassVal] = useState("");
@@ -24,7 +29,7 @@ export default function Form({ dataPeople }) {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    dataPeople(data);
+    addPeople(data);
     setNameVal("");
     setHeightVal("");
     setMassVal("");

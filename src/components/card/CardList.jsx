@@ -1,7 +1,13 @@
 import React, { Suspense, lazy } from "react";
-
-export default function CardList({ data, deletePeople }) {
+import { useDispatch } from "react-redux";
+import { removePeople } from "../../redux/slices/people";
+export default function CardList({ data }) {
+  const dispatch = useDispatch();
   const Card = lazy(() => import("./Card"));
+
+  const deletePeople = (index) => {
+    dispatch(removePeople(index));
+  };
 
   return (
     <div>
