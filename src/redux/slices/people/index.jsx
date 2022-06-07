@@ -1,10 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const getPeople = createAsyncThunk("people/getPeople", async () => {
+  try {
+    const response = await axios.get("https://swapi.dev/api/people/?page=1");
+    return response.data.results;
+  } catch (error) {
+    throw Error(error);
+  }
+});
 export const peopleSlice = createSlice({
   name: "people",
   initialState: {
     listPeople: [],
+    filterData: null,
+    loading: null,
+  },
+  extraReducers: {
+    [getPeople.pending]: (state, action) => {
+      state.listPeople = [];
+      state.loading = true;
+    },
+    [getPeople.fulfilled]: (state, action) => {
+      state.listPeople = action.payload;
+      state.loading = false;
+    },
   },
   reducers: {
     setListPeople: (state, action) => {
@@ -18,12 +38,17 @@ export const peopleSlice = createSlice({
       state.listPeople.unshift(action.payload);
     },
     filteredPeople: (state, action) => {
-      state.listPeople = state.listPeople.filter((people) =>
+      state.filterData = state.listPeople.filter((people) =>
         people.name.toLowerCase().includes(action.payload)
       );
     },
   },
 });
+
+// export const getPeople = createAsyncThunk("people/getPeople", async () => {
+//   const response = await axios.get("https://swapi.dev/api/people/?page=1");
+//   return response.data.results;
+// });
 
 export default peopleSlice.reducer;
 
@@ -35,10 +60,10 @@ export const {
   filteredPeople,
 } = peopleSlice.actions;
 
-export const fetchPeople = () => async (dispatch) => {
-  const response = await axios.get("https://swapi.dev/api/people/?page=1");
-  dispatch(setListPeople(response.data.results));
-};
+// export const fetchPeople = () => async (dispatch) => {
+//   const response = await axios.get("https://swapi.dev/api/people/?page=1");
+//   dispatch(setListPeople(response.data.results));
+// };
 
 export const removePeople = (index) => (dispatch) => {
   dispatch(deletePeople(index));

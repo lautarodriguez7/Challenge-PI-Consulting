@@ -7,33 +7,31 @@ export default function Form() {
   const dispatch = useDispatch();
   const addPeople = (data) => dispatch(addNewPeople(data));
 
-  const [nameVal, setNameVal] = useState("");
-  const [heightVal, setHeightVal] = useState("");
-  const [massVal, setMassVal] = useState("");
-
-  const handleNameInput = (e) => {
-    setNameVal(e.target.value);
+  const useField = ({ type }) => {
+    const [value, setValue] = useState("");
+    const onChange = (e) => setValue(e.target.value);
+    return {
+      type,
+      value,
+      onChange,
+    };
   };
 
-  const handleHeightInput = (e) => {
-    setHeightVal(e.target.value);
-  };
-
-  const handleMassInput = (e) => {
-    setMassVal(e.target.value);
-  };
+  const typeText = useField({ type: "text" });
+  const typeNumber = useField({ type: "number" });
+  const typeNumber2 = useField({ type: "number" });
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+    e.target.reset();
     addPeople(data);
-    setNameVal("");
-    setHeightVal("");
-    setMassVal("");
   };
+
   return (
     <div className="container m-3">
       <button
@@ -74,8 +72,8 @@ export default function Form() {
                     })}
                     className="form-control"
                     placeholder="Alan Perez"
-                    value={nameVal}
-                    onChange={handleNameInput}
+                    value={typeText.value}
+                    onChange={typeText.onChange}
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
@@ -86,9 +84,9 @@ export default function Form() {
                     })}
                     className="form-control"
                     placeholder="178"
-                    type="number"
-                    value={heightVal}
-                    onChange={handleHeightInput}
+                    type={typeNumber.type}
+                    value={typeNumber.value}
+                    onChange={typeNumber.onChange}
                   />
                   <label htmlFor="floatingInput">Height</label>
                 </div>
@@ -97,9 +95,9 @@ export default function Form() {
                     {...register("mass", { required: true })}
                     className="form-control"
                     placeholder="ej. 77"
-                    type="number"
-                    onChange={handleMassInput}
-                    value={massVal}
+                    type={typeNumber2.type}
+                    onChange={typeNumber2.onChange}
+                    value={typeNumber2.value}
                   />
                   <label htmlFor="floatingInput">Mass</label>
                   <input
