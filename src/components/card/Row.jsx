@@ -1,8 +1,6 @@
 import React from "react";
 import { deletePeople } from "../../redux/slices/people";
 export default function Row({ item, index }) {
-  // console.log(item);
-  console.log(index);
   return (
     <div className="container m-2" key={index}>
       <div className="card">

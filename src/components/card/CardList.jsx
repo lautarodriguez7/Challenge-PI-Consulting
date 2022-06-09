@@ -1,15 +1,18 @@
 import React, { Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removePeople } from "../../redux/slices/people";
-export default function CardList({ data }) {
+
+export default function CardList() {
   const dispatch = useDispatch();
+
   const Card = lazy(() => import("./Card"));
+
   const people = useSelector((state) => state.people.listPeople);
-  // const getP = () => dispatch(getPeople());
+
   const deletePeople = (index) => {
     dispatch(removePeople(index));
   };
-  console.log(data);
+
   return (
     <div>
       <Suspense

@@ -45,11 +45,6 @@ export const peopleSlice = createSlice({
   },
 });
 
-// export const getPeople = createAsyncThunk("people/getPeople", async () => {
-//   const response = await axios.get("https://swapi.dev/api/people/?page=1");
-//   return response.data.results;
-// });
-
 export default peopleSlice.reducer;
 
 export const {
@@ -59,11 +54,6 @@ export const {
   searchPeople,
   filteredPeople,
 } = peopleSlice.actions;
-
-// export const fetchPeople = () => async (dispatch) => {
-//   const response = await axios.get("https://swapi.dev/api/people/?page=1");
-//   dispatch(setListPeople(response.data.results));
-// };
 
 export const removePeople = (index) => (dispatch) => {
   dispatch(deletePeople(index));

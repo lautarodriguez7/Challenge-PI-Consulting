@@ -1,11 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Row from "./Row";
 
 export default function Card({ data, deletePeople }) {
   const filterData = useSelector((state) => state.people.filterData);
-  console.log(filterData);
-  console.log(data);
+
   return (
     <div>
       {filterData === null

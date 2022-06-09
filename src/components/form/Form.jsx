@@ -103,8 +103,21 @@ export default function Form() {
                   <input
                     type="submit"
                     value="Send"
-                    className="btn btn-primary mt-2"
+                    className="btn btn-primary m-1 mt-2"
                   />
+                  <button
+                    className="btn btn-danger  m-1 mt-2"
+                    type="button"
+                    onClick={() => {
+                      reset({
+                        name: "",
+                        height: "",
+                        mass: "",
+                      });
+                    }}
+                  >
+                    Reset Form
+                  </button>
                 </div>
                 {errors.name && (
                   <span className="form-control form-control-sm m-1 alert-danger">
