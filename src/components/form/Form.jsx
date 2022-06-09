@@ -8,12 +8,8 @@ export default function Form() {
   const addPeople = (data) => dispatch(addNewPeople(data));
 
   const useField = ({ type }) => {
-    const [value, setValue] = useState("");
-    const onChange = (e) => setValue(e.target.value);
     return {
       type,
-      value,
-      onChange,
     };
   };
 
@@ -24,7 +20,6 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data, e) => {
@@ -73,7 +68,6 @@ export default function Form() {
                     className="form-control"
                     placeholder="Alan Perez"
                     value={typeText.value}
-                    onChange={typeText.onChange}
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
@@ -86,7 +80,6 @@ export default function Form() {
                     placeholder="178"
                     type={typeNumber.type}
                     value={typeNumber.value}
-                    onChange={typeNumber.onChange}
                   />
                   <label htmlFor="floatingInput">Height</label>
                 </div>
@@ -96,7 +89,6 @@ export default function Form() {
                     className="form-control"
                     placeholder="ej. 77"
                     type={typeNumber2.type}
-                    onChange={typeNumber2.onChange}
                     value={typeNumber2.value}
                   />
                   <label htmlFor="floatingInput">Mass</label>
@@ -105,19 +97,6 @@ export default function Form() {
                     value="Send"
                     className="btn btn-primary m-1 mt-2"
                   />
-                  <button
-                    className="btn btn-danger  m-1 mt-2"
-                    type="button"
-                    onClick={() => {
-                      reset({
-                        name: "",
-                        height: "",
-                        mass: "",
-                      });
-                    }}
-                  >
-                    Reset Form
-                  </button>
                 </div>
                 {errors.name && (
                   <span className="form-control form-control-sm m-1 alert-danger">
