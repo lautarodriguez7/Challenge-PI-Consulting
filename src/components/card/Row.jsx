@@ -1,6 +1,5 @@
-import React from "react";
 import { deletePeople } from "../../redux/slices/people";
-export default function Row({ item, index }) {
+export default function Row({ item, index, deletePeople }) {
   return (
     <div className="container m-2" key={index}>
       <div className="card">
