@@ -9,6 +9,7 @@ export const getPeople = createAsyncThunk("people/getPeople", async () => {
     throw Error(error);
   }
 });
+
 export const peopleSlice = createSlice({
   name: "people",
   initialState: {
@@ -25,17 +26,19 @@ export const peopleSlice = createSlice({
       state.listPeople = action.payload;
       state.loading = false;
     },
+    [getPeople.rejected]: (state, action) => {
+      state.loading = false;
+    },
   },
   reducers: {
-    setListPeople: (state, action) => {
-      state.listPeople = action.payload;
-    },
     deletePeople: (state, action) => {
       let data = state.listPeople.filter((item, i) => i !== action.payload);
       state.listPeople = data;
+      state.filterData = data;
     },
     addPeople: (state, action) => {
       state.listPeople.unshift(action.payload);
+      state.filterData = state.listPeople;
     },
     filteredPeople: (state, action) => {
       state.filterData = state.listPeople.filter((people) =>
@@ -47,13 +50,7 @@ export const peopleSlice = createSlice({
 
 export default peopleSlice.reducer;
 
-export const {
-  setListPeople,
-  deletePeople,
-  addPeople,
-  searchPeople,
-  filteredPeople,
-} = peopleSlice.actions;
+export const { deletePeople, addPeople, filteredPeople } = peopleSlice.actions;
 
 export const removePeople = (index) => (dispatch) => {
   dispatch(deletePeople(index));
@@ -61,8 +58,4 @@ export const removePeople = (index) => (dispatch) => {
 
 export const addNewPeople = (data) => (dispatch) => {
   dispatch(addPeople(data));
-};
-
-export const searchPeopleName = (search) => (dispatch) => {
-  dispatch(searchPeople(search));
 };

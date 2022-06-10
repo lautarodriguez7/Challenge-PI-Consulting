@@ -1,12 +1,9 @@
 import React, { Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removePeople } from "../../redux/slices/people";
-
 export default function CardList() {
   const dispatch = useDispatch();
-
   const Card = lazy(() => import("./Card"));
-
   const people = useSelector((state) => state.people.listPeople);
 
   const deletePeople = (index) => {
@@ -19,7 +16,7 @@ export default function CardList() {
         fallback={
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
+              <span className="sr-only"></span>
             </div>
           </div>
         }

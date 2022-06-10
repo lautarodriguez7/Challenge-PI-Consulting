@@ -16,7 +16,7 @@ function App() {
     <div className="container">
       <SearchForm />
       <Form />
-      <CardList data={dispatch(getPeople())} />
+      <CardList />
     </div>
   );
 }

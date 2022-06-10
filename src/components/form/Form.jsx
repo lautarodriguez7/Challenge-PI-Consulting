@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addNewPeople } from "../../redux/slices/people";
@@ -6,16 +5,6 @@ import { addNewPeople } from "../../redux/slices/people";
 export default function Form() {
   const dispatch = useDispatch();
   const addPeople = (data) => dispatch(addNewPeople(data));
-
-  const useField = ({ type }) => {
-    return {
-      type,
-    };
-  };
-
-  const typeText = useField({ type: "text" });
-  const typeNumber = useField({ type: "number" });
-  const typeNumber2 = useField({ type: "number" });
 
   const {
     register,
@@ -67,7 +56,6 @@ export default function Form() {
                     })}
                     className="form-control"
                     placeholder="Alan Perez"
-                    value={typeText.value}
                   />
                   <label htmlFor="floatingInput">Name</label>
                 </div>
@@ -78,8 +66,7 @@ export default function Form() {
                     })}
                     className="form-control"
                     placeholder="178"
-                    type={typeNumber.type}
-                    value={typeNumber.value}
+                    type="number"
                   />
                   <label htmlFor="floatingInput">Height</label>
                 </div>
@@ -88,8 +75,7 @@ export default function Form() {
                     {...register("mass", { required: true })}
                     className="form-control"
                     placeholder="ej. 77"
-                    type={typeNumber2.type}
-                    value={typeNumber2.value}
+                    type="number"
                   />
                   <label htmlFor="floatingInput">Mass</label>
                   <input
