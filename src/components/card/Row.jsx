@@ -1,4 +1,3 @@
-import { deletePeople } from "../../redux/slices/people";
 export default function Row({ item, index, deletePeople }) {
   return (
     <div className="container m-2" key={index}>

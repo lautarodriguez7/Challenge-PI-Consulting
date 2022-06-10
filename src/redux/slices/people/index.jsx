@@ -42,7 +42,7 @@ export const peopleSlice = createSlice({
     },
     filteredPeople: (state, action) => {
       state.filterData = state.listPeople.filter((people) =>
-        people.name.toLowerCase().includes(action.payload)
+        people.name.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
   },
