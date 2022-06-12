@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { filteredPeople } from "../../redux/slices/people";
 
 export default function SearchForm() {
-  useEffect(() => {}, []);
-
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
-  const onClick = () => {
-    dispatch(filteredPeople(value));
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    dispatch(filteredPeople(e.target.value));
   };
 
   return (
@@ -18,14 +17,9 @@ export default function SearchForm() {
         type="text"
         placeholder="Search"
         value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
+        onChange={handleChange}
         className="  form-control m-2"
       />
-      <button value="Search" className="btn btn-primary m-2" onClick={onClick}>
-        Search
-      </button>
     </div>
   );
 }
